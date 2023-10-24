@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->bigIncrements('id')->autoIncrement();
-            $table->integer('amount')->default(0)->nullable(false);
-            $table->char('type')->nullable(false);
-            $table->char('category')->nullable(false)->default('uncategorized');
+            $table->float('amount')->default(0)->nullable();
+            $table->char('type')->nullable();
+            $table->char('category')->nullable()->default('uncategorized');
             $table->text('notes')->nullable();
             $table->timestamps();
         });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaction;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -12,7 +13,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        $transactions = Transaction::paginate(5);
+        return view('transaction.index', compact('transactions'));
     }
 
     /**
@@ -20,7 +22,7 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        //
+        return view('transaction.create');
     }
 
     /**
@@ -28,7 +30,25 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'amount' => 'required|numeric|min:0',
+            'type' => 'required|in: income,expense',
+            'category' => 'required|string|in: wage, bonus, gift, food & drinks, shopping, charity, housing, insurance, taxes, transportation',
+            'notes' => 'required|string',
+
+
+
+        ]);
+
+        $transaction = Transaction::create([
+            'amount' => $validated['amount'],
+            'type' => $validated['type'],
+            'category' => $validated['category'],
+            'notes' => $validated['notes'],
+            'published_at' => $request->has('is_published') ? Carbon::now() : false,
+        ]);
+
+        return $transaction;
     }
 
     /**
@@ -36,7 +56,7 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        //
+        return view('transaction.show', compact('transaction'));
     }
 
     /**
