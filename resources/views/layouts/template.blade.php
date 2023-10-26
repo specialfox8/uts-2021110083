@@ -59,7 +59,7 @@
 
     <footer class="blog-footer">
         <p>
-            Copyright © {{ date('Y') }} <a href="/">Blogging</a> - <a
+            Copyright © {{ date('Y') }} <a href="/">Transaction</a> - <a
                 href="{{ route('contact-us.index') }}">Contact Us</a>
         </p>
         <p>

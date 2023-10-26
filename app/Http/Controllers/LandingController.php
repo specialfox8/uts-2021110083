@@ -14,6 +14,6 @@ class LandingController extends Controller
     {
         $transactions = Transaction::query()->latest()->paginate(5);
         $featured = $transactions->shift();
-        return view('landing');
+        return view('landing', compact('transactions'));
     }
 }
