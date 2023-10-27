@@ -26,30 +26,33 @@
                     <input type="float" class="form-control" id="amount" name="amount" value="{{ old('amount') }}">
                 </div>
                 <div class="mb-3 col-md-12 col-sm-12">
-
-                    <label for="type">type</label method="post">
+                    <label for="type">Type</label>
                     <p>
-                        <input type="radio" id="income" name="fav_language" value="income">
-                        <label for="income">income</label><br>
-                        <input type="radio" id="expense" name="fav_language" value="expense">
-                        <label for="expense">expense</label><br>
+                        <input type="radio" id="income" name="type" value="income"
+                            {{ old('type') == 'income' ? 'checked' : '' }}>
+                        <label for="income">Income</label><br>
+                        <input type="radio" id="expense" name="type" value="expense"
+                            {{ old('type') == 'expense' ? 'checked' : '' }}>
+                        <label for="expense">Expense</label><br>
                     </p>
-
                 </div>
                 <div class="mb-3 col-md-12 col-sm-12">
-                    <label for="category">category</label method="post">
-                    <select name="category" id="category">
-                        <option value="uncategorized" selected>Uncategorized</option>
-                        <option value="">Wage</option>
-                        <option value="">bonus</option>
-                        <option value="">gift</option>
-                        <option value="">food & drinks</option>
-                        <option value="">shopping</option>
-                        <option value="">charity</option>
-                        <option value="">housing</option>
-                        <option value="">insurance</option>
-                        <option value="">taxes</option>
-                        <option value="">transportation</option>
+                    <label for="category">Category</label>
+                    <select name="category" id="category" class="form-select">
+                        <option value="uncategorized" {{ old('category') == 'uncategorized' ? 'selected' : '' }}>
+                            Uncategorized</option>
+                        <option value="wage" {{ old('category') == 'wage' ? 'selected' : '' }}>Wage</option>
+                        <option value="bonus" {{ old('category') == 'bonus' ? 'selected' : '' }}>Bonus</option>
+                        <option value="gift" {{ old('category') == 'gift' ? 'selected' : '' }}>Gift</option>
+                        <option value="food & drinks" {{ old('category') == 'food & drinks' ? 'selected' : '' }}>Food &
+                            Drinks</option>
+                        <option value="shopping" {{ old('category') == 'shopping' ? 'selected' : '' }}>Shopping</option>
+                        <option value="charity" {{ old('category') == 'charity' ? 'selected' : '' }}>Charity</option>
+                        <option value="housing" {{ old('category') == 'housing' ? 'selected' : '' }}>Housing</option>
+                        <option value="insurance" {{ old('category') == 'insurance' ? 'selected' : '' }}>Insurance</option>
+                        <option value="taxes" {{ old('category') == 'taxes' ? 'selected' : '' }}>Taxes</option>
+                        <option value="transportation" {{ old('category') == 'transportation' ? 'selected' : '' }}>
+                            Transportation</option>
                     </select>
                 </div>
                 <div class="mb-3 col-md-12 col-sm-12">

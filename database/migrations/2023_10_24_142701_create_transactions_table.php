@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->bigIncrements('id')->autoIncrement();
-            $table->float('amount')->default(0)->nullable();
-            $table->char('type')->nullable();
-            $table->char('category')->nullable()->default('uncategorized');
+            $table->float('amount')->default(0);
+            $table->enum('type', ['income', 'expense']);;
+            $table->char('category')->default('uncategorized');
             $table->text('notes')->nullable();
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });
     }

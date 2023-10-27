@@ -13,8 +13,16 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transactions = Transaction::paginate(5);
-        return view('transaction.index', compact('transactions'));
+
+        $transactions = Transaction::orderBy('created_at', 'desc')->get();
+
+        $totalIncome = $transactions->where('type', 'income')->sum('amount');
+        $totalExpense = $transactions->where('type', 'expense')->sum('amount');
+        $balance = $totalIncome - $totalExpense;
+        $totalIncomeCount = $transactions->where('type', 'income')->count();
+        $totalExpenseCount = $transactions->where('type', 'expense')->count();
+
+        return view('transaction.index', compact('transactions', 'balance', 'totalIncome', 'totalExpense', 'totalIncomeCount', 'totalExpenseCount'));
     }
 
     /**
@@ -31,10 +39,11 @@ class TransactionController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'amount' => 'required|numeric|min:0',
-            'type' => 'required|in: income,expense',
-            'category' => 'required|string|in: wage, bonus, gift, food & drinks, shopping, charity, housing, insurance, taxes, transportation',
+            'amount' => 'required|numeric',
+            'type' => 'required|in:income,expense',
+            'category' => 'required|in:uncategorized,wage,bonus,gift,food & drinks,shopping,charity,housing,insurance,taxes,transportation',
             'notes' => 'required|string',
+
 
 
 
