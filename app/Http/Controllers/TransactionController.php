@@ -82,10 +82,11 @@ class TransactionController extends Controller
     public function update(Request $request, Transaction $transaction)
     {
         $validated = $request->validate([
-            'amount' => 'required|numeric|min:0',
-            'type' => 'required|in: income,expense',
-            'category' => 'required|string|in: wage, bonus, gift, food & drinks, shopping, charity, housing, insurance, taxes, transportation',
+            'amount' => 'required|numeric',
+            'type' => 'required|in:income,expense',
+            'category' => 'required|in:uncategorized,wage,bonus,gift,food & drinks,shopping,charity,housing,insurance,taxes,transportation',
             'notes' => 'required|string',
+
         ]);
 
 

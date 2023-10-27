@@ -15,20 +15,22 @@ class TransactionSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
+        $currencies = ['Rp'];
 
-
-        // Buat 25 artikel dummy
         for ($i = 0; $i <= 100; $i++) {
 
-            $amout = $faker->randomFloat(2, 0, 1000);
+            $amount = $faker->randomFloat(3, 0, 100000);
+            $currency = $faker->randomElement($currencies);
             $type = $faker->randomElement(['income', 'expense']);
             $category = $faker->randomElement(['wage', 'bonus', 'gift', 'food & drinks', 'shopping', 'charity', 'housing', 'insurance', 'taxes', 'transportation']);
             $notes = $faker->paragraph(20);
             $created_at = $faker->dateTimeBetween('-3 months', 'now');
 
-            DB::table('transaction')->insert([
 
-                'amout' => $amout,
+
+            DB::table('transactions')->insert([
+                'amount' => "$amount",
+                'currency' => $currency,
                 'type' => $type,
                 'category' => $category,
                 'notes' => $notes,

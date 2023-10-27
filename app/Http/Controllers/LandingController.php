@@ -12,8 +12,8 @@ class LandingController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $transactions = Transaction::query()->latest()->paginate(5);
+        $transactions = Transaction::query()->latest()->paginate(100);
         $featured = $transactions->shift();
-        return view('landing', compact('transactions'));
+        return view('landing', compact('transactions',));
     }
 }

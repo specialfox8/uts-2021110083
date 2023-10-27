@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('transactions', function (Blueprint $table) {
+            $table->string('currency', 10);
             $table->bigIncrements('id')->autoIncrement();
             $table->float('amount')->default(0);
             $table->enum('type', ['income', 'expense']);;
