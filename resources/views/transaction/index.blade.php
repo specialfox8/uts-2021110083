@@ -32,7 +32,7 @@
                 @forelse ($transactions as $transaction)
                     <tr>
                         <th scope="row">{{ $transaction->id }}</th>
-                        <td>{{ $transaction->amount }} {{ $transaction->currency }}</td>
+                        <td>{{ $transaction->currency }} {{ $transaction->amount }} </td>
                         <td>{{ $transaction->type }}</td>
                         <td>{{ $transaction->category }}</td>
                         <td>{{ $transaction->notes }}</td>
