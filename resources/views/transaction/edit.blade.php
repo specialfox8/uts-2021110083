@@ -19,7 +19,7 @@
 
     <div class="row my-5">
         <div class="col-12 px-5">
-            <form action="{{ route('articles.update', $transaction) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('transaction.update', $transaction) }}" method="POST" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 <div class="mb-3 col-md-12 col-sm-12">

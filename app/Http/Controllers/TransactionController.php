@@ -13,9 +13,9 @@ class TransactionController extends Controller
      */
     public function index()
     {
+        $transactions = Transaction::paginate();
 
         $transactions = Transaction::orderBy('created_at', 'desc')->get();
-
         $totalIncome = $transactions->where('type', 'income')->sum('amount');
         $totalExpense = $transactions->where('type', 'expense')->sum('amount');
         $balance = $totalIncome - $totalExpense;
